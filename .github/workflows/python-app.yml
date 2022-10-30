@@ -11,6 +11,10 @@ on:
 
 permissions:
   contents: read
+  
+env:
+  ## Sets environment variable
+  WEBOOK_URL: ${{secrets.WEBOOK_URL}}    
 
 jobs:
   build:
@@ -28,8 +32,6 @@ jobs:
         python -m pip install --upgrade pip
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Send Message
-      env:
-        WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
       run: |
-        python send_fact.py "$WEBHOOK_URL"
+        echo "URL IS: ${{env.WEBHOOK_URL}}"
 
