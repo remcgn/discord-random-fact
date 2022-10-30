@@ -14,7 +14,7 @@ permissions:
   
 env:
   ## Sets environment variable
-  WEBOOK_URL: URL IS THIS
+  WEBOOK_URL: "URL IS THIS"
 
 jobs:
   build:
