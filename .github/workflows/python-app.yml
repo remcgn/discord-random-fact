@@ -28,7 +28,8 @@ jobs:
         python -m pip install --upgrade pip
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Send Message
-      run: |
-        python send_fact.py
       env:
         WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
+      run: |
+        python send_fact.py "$WEBHOOK_URL"
+
