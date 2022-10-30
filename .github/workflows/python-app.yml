@@ -29,6 +29,6 @@ jobs:
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Send Message
       run: |
-        python send_facts.py
+        python send_fact.py
       env:
         WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
