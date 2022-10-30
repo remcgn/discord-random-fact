@@ -31,5 +31,5 @@ jobs:
       env:
         WEBHOOK_URL: ${{secrets.WEBHOOK_URL}}
       run: |
-        python send-fact.py
+        python send_fact.py
 
