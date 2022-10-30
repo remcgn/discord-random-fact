@@ -14,7 +14,7 @@ permissions:
   
 env:
   ## Sets environment variable
-  WEBHOOK_URL: "URL IS THIS"
+  WEBHOOK_URL: ${{secrets.WEBHOOK_URL}}
 
 jobs:
   build:
