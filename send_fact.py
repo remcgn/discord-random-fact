@@ -2,7 +2,12 @@ import randfacts
 import os
 from discord_webhook import DiscordWebhook, DiscordEmbed
 
-webhook = DiscordWebhook(os.environ.get('WEBHOOK_URL'))
+if "WEBHOOK_URL" not in os.environ:
+    raise Exception("WEBHOOK_URL is not set!")
+else:
+    WEBHOOK_URL = os.environ.get('WEBHOOK_URL')
+
+webhook = DiscordWebhook(WEBHOOK_URL)
 
 fact = randfacts.get_fact()
 
