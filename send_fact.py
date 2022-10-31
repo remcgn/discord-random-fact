@@ -1,14 +1,15 @@
 import randfacts
 import os
-from discord_webhook import DiscordWebhook
+from discord_webhook import DiscordWebhook, DiscordEmbed
 
-WEBHOOK_URL = os.environ.get('WEBHOOK_URL')
+webhook = DiscordWebhook(os.environ.get('WEBHOOK_URL'))
 
 fact = randfacts.get_fact()
 
-webhook = DiscordWebhook(url=f"{WEBHOOK_URL}",
-                            content=f"Fact of the day: {fact}")
+embed = DiscordEmbed(title='Fact of the day!',
+                     description=f'{fact}', color='03b2f8')
+embed.set_timestamp()
+
+webhook.add_embed(embed)
 
 response = webhook.execute()
-
-print(response)
