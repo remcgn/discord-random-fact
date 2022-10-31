@@ -1,4 +1,3 @@
-from msilib.schema import Error
 import unittest
 import randfacts
 import os
