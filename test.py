@@ -1,8 +1,13 @@
+from msilib.schema import Error
 import unittest
 import randfacts
 import os
 from discord_webhook import DiscordWebhook
-WEBHOOK_URL = os.environ.get('WEBHOOK_URL')
+
+if "WEBHOOK_URL" not in os.environ:
+    raise Exception("WEBHOOK_URL is not set!")
+else:
+    WEBHOOK_URL = os.environ.get('WEBHOOK_URL')
 
 
 class TestFact(unittest.TestCase):
@@ -14,9 +19,11 @@ class TestFact(unittest.TestCase):
     def test_hook(self):
         webhook = DiscordWebhook(url=f"{WEBHOOK_URL}",
                                  content="This is a test message!")
-        response = webhook.execute()
+        send_response = webhook.execute()
+        delete_response = webhook.delete(send_response)
 
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(send_response.status_code, 200)
+        self.assertEqual(delete_response.status_code, 204)
 
 
 if __name__ == '__main__':
